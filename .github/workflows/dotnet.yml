@@ -1,0 +1,28 @@
+name: Validate .NET code
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+        default: '8.0'
+      working-directory:
+        required: true
+        type: string
+        default: '.'
+jobs:
+  dotnet:
+    name: Build .NET solution and check format
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:${{ inputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4     
+      - name: Check .NET version
+        run: dotnet --version       
+      - name: Build .NET solution
+        run: dotnet build
+        working-directory: ${{ inputs.working-directory }}
+      - name: Check .NET code format
+        run: dotnet format --verify-no-changes
+        working-directory: ${{ inputs.working-directory }}
