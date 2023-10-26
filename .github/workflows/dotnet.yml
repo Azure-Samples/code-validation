@@ -1,4 +1,4 @@
-name: .NET - Build and check format
+name: Build and check format
 on:
   workflow_call:
     inputs:
@@ -12,7 +12,7 @@ on:
         default: '.'
 jobs:
   dotnet:
-    name: .NET - Build and check format
+    name: Build and check format
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:${{ inputs.version }}
     steps:
