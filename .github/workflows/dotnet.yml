@@ -1,4 +1,4 @@
-name: Validate .NET code
+name: Validate .NET solution
 on:
   workflow_call:
     inputs:
@@ -12,7 +12,7 @@ on:
         default: '.'
 jobs:
   dotnet:
-    name: Build .NET solution and check format
+    name: Validate .NET solution
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/dotnet/sdk:${{ inputs.version }}
     steps:
